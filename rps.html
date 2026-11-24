@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Monster RPS</title>
+
+<style>
+body {
+    background: black;
+    color: #39ff14;
+    text-align: center;
+    font-family: Arial;
+}
+
+h1 {
+    text-shadow: 0 0 15px #39ff14;
+    margin-top: 50px;
+}
+
+button {
+    background: #39ff14;
+    color: black;
+    border: none;
+    padding: 20px;
+    margin: 15px;
+    font-size: 25px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: white;
+}
+
+#result {
+    color: white;
+    font-size: 25px;
+    margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>✊ MONSTER ROCK PAPER SCISSORS ✂️</h1>
+
+<h2>Choose Your Weapon!</h2>
+
+<button onclick="play('rock')">✊</button>
+
+<button onclick="play('paper')">📄</button>
+
+<button onclick="play('scissors')">✂️</button>
+
+<h2 id="result">Let's Play!</h2>
+
+<h2 id="score">Your Score: 0 | Computer: 0</h2>
+
+<button onclick="reset()">RESTART</button>
+
+<script>
+
+let playerScore = 0;
+let computerScore = 0;
+
+function play(player) {
+
+    let choices = ['rock','paper','scissors'];
+
+    let computer = choices[
+        Math.floor(Math.random()*3)
+    ];
+
+    let result = "";
+
+    if(player === computer) {
+        result = "IT'S A DRAW!";
+    }
+
+    else if(
+        (player === 'rock' && computer === 'scissors') ||
+        (player === 'paper' && computer === 'rock') ||
+        (player === 'scissors' && computer === 'paper')
+    ) {
+        result = "YOU WIN! 🔥";
+        playerScore++;
+    }
+
+    else {
+        result = "COMPUTER WINS!";
+        computerScore++;
+    }
+
+    document.getElementById("result").innerHTML =
+        result + "<br>You: " + player +
+        "<br>Computer: " + computer;
+
+    document.getElementById("score").innerHTML =
+        "Your Score: " + playerScore +
+        " | Computer: " + computerScore;
+
+}
+
+function reset() {
+
+    playerScore = 0;
+    computerScore = 0;
+
+    document.getElementById("result").innerHTML =
+        "Let's Play!";
+
+    document.getElementById("score").innerHTML =
+        "Your Score: 0 | Computer: 0";
+}
+
+</script>
+
+</body>
+</html>
